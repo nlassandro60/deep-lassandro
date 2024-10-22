@@ -2,7 +2,7 @@
 
 ---
 
-This repository hosts the data and code of the paper: Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering
+This repository hosts the data and code of the paper: [Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering](https://arxiv.org/pdf/2410.15999)
 
 ---
 
