@@ -61,9 +61,38 @@ python ./scripts/run_spare.py \
   --layer_ids 12 13 14 15 \
   --edit_degree=2.0 \
   --select_topk_proportion=0.07 \
-  --seed=${seed} \
+  --seed=42 \
   --hiddens_name="grouped_activations" \
   --mutual_information_save_name="mutual_information" \
   --run_use_parameter \
   --run_use_context
+```
+
+## Citing
+
+Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering
+```text
+@misc{zhao2024steeringknowledgeselectionbehaviours,
+      title={Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering}, 
+      author={Yu Zhao and Alessio Devoto and Giwon Hong and Xiaotang Du and Aryo Pradipta Gema and Hongru Wang and Kam-Fai Wong and Pasquale Minervini},
+      year={2024},
+      eprint={2410.15999},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.15999}, 
+}
+```
+
+The preliminary study: Analysing the Residual Stream of Language Models Under Knowledge Conflicts
+
+```text
+@misc{zhao2024analysingresidualstreamlanguage,
+      title={Analysing the Residual Stream of Language Models Under Knowledge Conflicts}, 
+      author={Yu Zhao and Xiaotang Du and Giwon Hong and Aryo Pradipta Gema and Alessio Devoto and Hongru Wang and Xuanli He and Kam-Fai Wong and Pasquale Minervini},
+      year={2024},
+      eprint={2410.16090},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.16090}, 
+}
 ```
