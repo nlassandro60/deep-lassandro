@@ -1,7 +1,4 @@
 import os
-
-assert os.environ.get('PROJ_DIR') is not None
-
 import numpy as np
 import torch
 from spare.datasets.function_extraction_datasets import REODQADataset

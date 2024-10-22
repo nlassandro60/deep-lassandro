@@ -9,7 +9,7 @@ from spare.function_extraction_modellings.function_extraction_gemma2 import Gemm
 from spare.function_extraction_modellings.function_extraction_llama import LlamaForCausalLM
 from spare.sae_lens.eleuther_sae_wrapper import EleutherSae
 
-PROJ_DIR = Path(os.environ["PROJ_DIR"])
+PROJ_DIR = Path(os.environ.get("PROJ_DIR", "./"))
 
 
 def add_file_handler(_logger, output_dir: str, file_name: str):
