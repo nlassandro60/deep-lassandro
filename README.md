@@ -68,13 +68,18 @@ python ./scripts/run_spare.py \
   --run_use_context
 ```
 
+## Acknowledgement
+
+The implementation of the sparse auto-encoder is adapted from EleutherAI/sae https://github.com/EleutherAI/sae and jbloomAus/SAELens https://github.com/jbloomAus/SAELens.
+We appreciate their open-source contributions! 
+
 ## Citing
 
 Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering
 ```text
 @misc{zhao2024steeringknowledgeselectionbehaviours,
       title={Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering}, 
-      author={Yu Zhao and Alessio Devoto and Giwon Hong and Xiaotang Du and Aryo Pradipta Gema and Hongru Wang and Kam-Fai Wong and Pasquale Minervini},
+      author={Yu Zhao and Alessio Devoto and Giwon Hong and Xiaotang Du and Aryo Pradipta Gema and Hongru Wang and Xuanli He and Kam-Fai Wong and Pasquale Minervini},
       year={2024},
       eprint={2410.15999},
       archivePrefix={arXiv},
