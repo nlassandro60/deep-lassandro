@@ -188,9 +188,9 @@ def generate_two_answers(test_example, model, tokenizer, model_name, seed, re_od
     return outputs
 
 
-def run(test_examples, model_path="meta-llama/Llama-2-7b-hf"):
+def run(test_examples, model_path="google/gemma-2-9b"):
     model, tokenizer, model_name, re_odqa_dataset, use_context_patch, use_parameter_patch, inspect_module = \
-        get_llama_spare(model_path)
+        get_gemma_spare(model_path)
 
     for item in test_examples:
         test_example = item["test_example"]
