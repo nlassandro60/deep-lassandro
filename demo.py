@@ -108,7 +108,7 @@ def get_gemma_spare(model_path):
     select_topk_proportion = 0.01
     mutual_information_save_name = "mutual_information"
     model_name = os.path.basename(model_path)
-    model, tokenizer = init_frozen_language_model(model_path)
+    model, tokenizer = init_frozen_language_model(model_path, attn_imp="eager") #!# INTERVENTO: False = eager
 
     layer_ids = [23, 24, 25, 29, 30, 31]
     edit_degree = 1.8
@@ -120,6 +120,7 @@ def get_gemma_spare(model_path):
     _, use_parameter_patch, inspect_module = \
         get_patch_hooks(layer_ids, all_use_context_func, all_use_context_indices,
                         all_use_parameter_func, all_use_parameter_indices, all_sae)
+    
     layer_ids = [23, 24, 25, 26]
     edit_degree = 3
     all_use_context_weight, all_use_parameter_weight, all_sae = \
@@ -160,15 +161,17 @@ def generate_two_answers(test_example, model, tokenizer, model_name, seed, re_od
     demonstrations = [de for de in demonstrations]
     demonstrations_ids = [item["idx"] for item in demonstrations]
 
-    demonstrations_str = re_odqa_dataset.verbalise_demonstrations(
+    demonstrations_str = re_odqa_dataset.verbalise_demonstrations( #!# genera demonstration_ids nell'output
         demonstrations, ctx_key="org_context", ans_key="org_answer"
     )
-    test_example_str = re_odqa_dataset.verbalise_one_example(
+    test_example_str = re_odqa_dataset.verbalise_one_example( #!# genera test_example_str nell'output
         test_example, "context", None, is_test=True
     )
 
     inputs = tokenizer([demonstrations_str + test_example_str], return_tensors="pt")
     input_ids = inputs["input_ids"].cuda()
+
+    #!# generate_with_patch è la funzione che sterza il modello
 
     use_context_pred = generate_with_patch(
         model, tokenizer, use_context_patch, inspect_module, input_ids.cuda(), generation_kwargs
@@ -190,7 +193,7 @@ def generate_two_answers(test_example, model, tokenizer, model_name, seed, re_od
 
 def run(test_examples, model_path="google/gemma-2-9b"):
     model, tokenizer, model_name, re_odqa_dataset, use_context_patch, use_parameter_patch, inspect_module = \
-        get_gemma_spare(model_path)
+        get_gemma_spare(model_path) #!# INTERVENTO: addestrare un nuovo modello gemma sui nuovi dati
 
     for item in test_examples:
         test_example = item["test_example"]
@@ -199,7 +202,7 @@ def run(test_examples, model_path="google/gemma-2-9b"):
         test_example["context"] = test_example["context"][:2048]
         test_example["question"] = test_example["question"][:128]
 
-        spare_outputs = generate_two_answers(
+        spare_outputs = generate_two_answers( #!# INTERVENTO: limitarsi ad individuare i conflitti senza generare risposte
             test_example, model, tokenizer, model_name, seed, re_odqa_dataset, num_demonstrations,
             use_context_patch, use_parameter_patch, inspect_module
         )

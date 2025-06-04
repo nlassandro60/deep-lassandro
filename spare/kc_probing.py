@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.INFO)
 
 
-class LogisticRegression(nn.Module):
+class LogisticRegression(nn.Module): #!# modello di regressione logistica per il rilevamento dei conflitti
     def __init__(self, input_dim, use_bias):
         super(LogisticRegression, self).__init__()
         self.linear = nn.Linear(input_dim, 1, bias=use_bias)
@@ -57,6 +57,9 @@ class ActivationDataset(Dataset):
 
 def load_conflict_train_test_data(memorised_set=None, model_name=None, data_name=None, analyse_activation=None,
                                   layer_idx=None, return_bid=False):
+    
+    #!# load_activations carica le attivazioni già salvate in memoria
+
     conflict_activations = load_activations(model_name, data_name, analyse_activation, "conflict", layer_idx)
     none_conflict_activations = load_activations(model_name, data_name, analyse_activation, "none_conflict", layer_idx)
 

@@ -20,7 +20,7 @@ logger.setLevel(level=logging.INFO)
 
 
 @torch.no_grad()
-def save_activations(
+def save_activations( #!# funzione per salvare le attivazioni
         target_layers=None,
         model_path="meta-llama/Meta-Llama-3-8B",
         none_conflict=False,
@@ -30,7 +30,7 @@ def save_activations(
     batch_size = 1
     demonstrations_org_context = True
     demonstrations_org_answer = True
-    flash_attn = True
+    flash_attn = False #!# INTERVENTO: False = eager
 
     results_dir = PROJ_DIR / f"cache_data"
 
@@ -214,15 +214,15 @@ def save_distinct_questions(data_name):
 
 if __name__ == '__main__':
     save_activations(
-        model_path="meta-llama/Meta-Llama-3-8B",
-        close_book=False,
+        model_path="google/gemma-2-9b",
+        # close_book=False,
         none_conflict=False,
         data_name="nqswap",
         target_layers=list(range(0, 14)),
     )
     save_activations(
-        model_path="meta-llama/Meta-Llama-3-8B",
-        close_book=False,
+        model_path="google/gemma-2-9b",
+        # close_book=False,
         none_conflict=True,
         data_name="nqswap",
         target_layers=list(range(0, 14)),

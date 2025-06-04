@@ -66,7 +66,7 @@ def greedy_decoding_hf(
 @torch.no_grad()
 def main(
         write_logs=False,
-        flash_attn=True,
+        flash_attn=True, #!# INTERVENTO: False = eager
         exp_name="debug",
         model_path="google/gemma-2-9b",
         k_shot=32,
